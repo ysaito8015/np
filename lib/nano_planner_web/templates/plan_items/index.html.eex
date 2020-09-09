@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <%= for item <- @plan_items do %>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <%= item.name %>
+    </div>
+    <div class="col-12 col-md-8">
+      <%= item.description %>
+    </div>
+  </div>
+  <% end %>
+</div>
