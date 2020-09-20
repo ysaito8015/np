@@ -38,7 +38,10 @@ defmodule NanoPlanner.Schedule do
       ** (Ecto.NoResultsError)
 
   """
-  def get_plan_item!(id), do: Repo.get!(PlanItem, id)
+  def get_plan_item!(id) do
+    Repo.get!(PlanItem, id)
+    |> PlanItem.convert_datetime
+  end
 
   @doc """
   Creates a plan_item.
