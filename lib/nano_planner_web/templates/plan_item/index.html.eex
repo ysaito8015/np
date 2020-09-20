@@ -11,6 +11,11 @@
         <% end %>
       </span>
     </div>
+    <div class="col-12">
+      <span id="plan-item-duration">
+        <%= format_duration(item) %>
+      </span>
+    </div>
   </div>
   <% end %>
 </div>
