@@ -10,6 +10,5 @@ defmodule NanoPlanner.Repo.Migrations.CreatePlanItems do
 
       timestamps()
     end
-
   end
 end
