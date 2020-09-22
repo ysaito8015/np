@@ -15,7 +15,9 @@
   </head>
   <body>
     <header>
-      <h1><%= link "NanoPlanner", to: Routes.top_path(@conn, :index, []) %></h1>
+      <h1>
+        <%= link "NanoPlanner", to: Routes.top_path(@conn, :index, []) %>
+      </h1>
     </header>
     <main>
       <%= @inner_content %>
