@@ -16,7 +16,6 @@ defmodule NanoPlanner.Schedule do
     |> convert_datetime()
   end
 
-
   defp convert_datetime(items) when is_list(items) do
     Enum.map(items, &convert_datetime(&1))
   end
