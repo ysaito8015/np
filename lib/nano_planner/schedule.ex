@@ -38,8 +38,6 @@ defmodule NanoPlanner.Schedule do
   end
 
   def create_plan_item(attrs) do
-    #attrs = %{attrs | "starts_at" => Timex.Timezone.convert(Timex.parse!(attrs["starts_at"], "{RFC3339}"), "Etc/UTC")}
-    #attrs = %{attrs | "ends_at" => Timex.Timezone.convert(Timex.parse!(attrs["ends_at"], "{RFC3339}"), "Etc/UTC")}
     item = %PlanItem{}
     fields = [:name, :description, :starts_at, :ends_at]
     cs = Ecto.Changeset.cast(item, attrs, fields)
@@ -60,17 +58,6 @@ defmodule NanoPlanner.Schedule do
     Map.merge(item, %{
       starts_at: Timezone.convert(item.starts_at, time_zone()),
       ends_at: Timezone.convert(item.ends_at, time_zone())
-    })
-  end
-
-  defp convert_to_utc(attrs) do
-    alias Timex.Timezone
-
-    Map.merge(attrs, %{
-      "starts_at" => attrs["starts_at"]
-      |> Timezone.convert("Etc/UTC"),
-      "ends_at" => attrs["ends_at"]
-      |> Timezone.convert("Etc/UTC")
     })
   end
 end
