@@ -1,0 +1,10 @@
+<div class="modal viewer">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>予定「<%= @item.name %>」を削除してもよろしいですか？</p>
+        <p>削除した予定をもとに戻すことはできません。</p>
+      </div>
+    </div>
+  </div>
+</div>
