@@ -12,4 +12,8 @@ defmodule NanoPlannerWeb.LessonController do
   def hello(conn, _params) do
     render(conn, "hello.html")
   end
+
+  def modal(conn, _params) do
+    render(conn, "modal.html")
+  end
 end
