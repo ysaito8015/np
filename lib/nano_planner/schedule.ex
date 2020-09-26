@@ -38,10 +38,9 @@ defmodule NanoPlanner.Schedule do
   end
 
   def create_plan_item(attrs) do
-    item = %PlanItem{}
-    fields = [:name, :description, :starts_at, :ends_at]
-    cs = Ecto.Changeset.cast(item, attrs, fields)
-    Repo.insert!(cs)
+    %PlanItem{}
+    |> PlanItem.changeset(attrs)
+    |> Repo.insert!()
   end
 
   def change_plan_item(%PlanItem{} = item) do
