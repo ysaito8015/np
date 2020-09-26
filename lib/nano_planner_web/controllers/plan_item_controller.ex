@@ -34,4 +34,10 @@ defmodule NanoPlannerWeb.PlanItemController do
     Schedule.update_plan_item(plan_item, plan_item_params)
     redirect(conn, to: Routes.plan_item_path(conn, :index))
   end
+
+  def delete(conn, %{"id" => id}) do
+    plan_item = Schedule.get_plan_item!(id)
+    Schedule.delete_plan_item(plan_item)
+    redirect(conn, to: Routes.plan_item_path(conn, :index))
+  end
 end
