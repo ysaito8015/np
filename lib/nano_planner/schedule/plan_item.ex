@@ -27,10 +27,41 @@ defmodule NanoPlanner.Schedule.PlanItem do
     :e_hour,
     :e_minute
   ]
+
   @doc false
   def changeset(plan_item, attrs) do
     plan_item
     |> cast(attrs, @allowed_fields)
+    |> change_starts_at()
+    |> change_ends_at()
     |> validate_required([])
+  end
+
+  defp change_starts_at(changeset) do
+    d = get_field(changeset, :s_date)
+    h = get_field(changeset, :s_hour)
+    m = get_field(changeset, :s_minute)
+    dt = get_local_datetime(d, h, m)
+    utc_dt = Timex.Timezone.convert(dt, "Etc/UTC")
+    put_change(changeset, :starts_at, utc_dt)
+  end
+
+  defp change_ends_at(changeset) do
+    d = get_field(changeset, :e_date)
+    h = get_field(changeset, :e_hour)
+    m = get_field(changeset, :e_minute)
+    dt = get_local_datetime(d, h, m)
+    utc_dt = Timex.Timezone.convert(dt, "Etc/UTC")
+    put_change(changeset, :ends_at, utc_dt)
+  end
+
+  defp get_local_datetime(date, hour, minute) do
+    date
+    |> Timex.to_datetime(time_zone())
+    |> Timex.shift(hours: hour, minutes: minute)
+  end
+
+  defp time_zone do
+    Application.get_env(:nano_planner, :default_time_zone)
   end
 end

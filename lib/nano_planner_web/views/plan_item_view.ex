@@ -45,10 +45,20 @@ defmodule NanoPlannerWeb.PlanItemView do
   end
 
   def select_for_hours(form, field) do
-    select(form, field, 0..23, class: "form-control", required: true)
+    options = Enum.map(0..23, &{two_digits(&1), &1})
+    select(form, field, options, class: "form-control", required: true)
   end
 
   def select_for_minutes(form, field) do
-    select(form, field, 0..59, class: "form-control", required: true)
+    options =
+      0..11
+      |> Enum.map(&(&1 * 5))
+      |> Enum.map(&{two_digits(&1), &1})
+
+    select(form, field, options, class: "form-control", required: true)
+  end
+
+  defp two_digits(n) do
+    n |> Integer.to_string() |> String.pad_leading(2, "0")
   end
 end
