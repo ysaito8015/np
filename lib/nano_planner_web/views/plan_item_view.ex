@@ -43,4 +43,12 @@ defmodule NanoPlannerWeb.PlanItemView do
       Timex.days_to_beginning_of_week(datetime, :sun)
     )
   end
+
+  def select_for_hours(form, field) do
+    select(form, field, 0..23, class: "form-control", required: true)
+  end
+
+  def select_for_minutes(form, field) do
+    select(form, field, 0..59, class: "form-control", required: true)
+  end
 end
